@@ -6,16 +6,16 @@ public class EnemyPool : MonoBehaviour
 {
       public static EnemyPool Instance;
 
-    public GameObject enemyPrefab; // Prefab del enemigo
-    public int poolSize = 10; // Tamaño del pool
-    private List<GameObject> enemyPool; // Lista de objetos en el pool
+    public GameObject enemyPrefab; 
+    public int poolSize = 10; 
+    private List<GameObject> enemyPool; 
 
     void Awake()
     {
-        Instance = this; // Asignar la instancia
+        Instance = this; 
         enemyPool = new List<GameObject>();
 
-        // Crear pool para enemigos
+        
         for (int i = 0; i < poolSize; i++)
         {
             GameObject enemy = Instantiate(enemyPrefab);
@@ -30,9 +30,9 @@ public class EnemyPool : MonoBehaviour
         {
             if (!enemy.activeInHierarchy)
             {
-                return enemy; // Retornar el objeto inactivo
+                return enemy; 
             }
         }
-        return null; // Retornar null si no hay objetos disponibles
+        return null; 
     }
 }

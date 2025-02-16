@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {   public float speed = 2f;
-    public GameObject bulletPrefab; // Prefab del proyectil del enemigo
-    public Transform EnemyBulletSpawnPoint; // Punto de donde se generarán los proyectiles
-    public float fireRate = 1f; // Frecuencia de disparo
-    private float nextFireTime = 0f; // Tiempo para el próximo disparo
+    public GameObject bulletPrefab; 
+    public Transform EnemyBulletSpawnPoint; 
+        public float fireRate = 1f; 
+    private float nextFireTime = 0f; 
 
     void Update()
     {
@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
         transform.Translate(Vector2.up * speed * Time.deltaTime);
         if (transform.position.y < -Camera.main.orthographicSize)
         {
-            gameObject.SetActive(false); // Desactivar si sale de la cámara
+            gameObject.SetActive(false); 
         }
     }
 
@@ -28,23 +28,23 @@ public class Enemy : MonoBehaviour
     {
         if (Time.time >= nextFireTime)
         {
-            nextFireTime = Time.time + fireRate; // Establecer el tiempo para el próximo disparo
-            GameObject bullet = EnemyBulletPool.Instance.GetPooledBullet(); // Obtener un proyectil del pool
+            nextFireTime = Time.time + fireRate; 
+            GameObject bullet = EnemyBulletPool.Instance.GetPooledBullet(); 
             if (bullet != null)
             {
-                bullet.transform.position = EnemyBulletSpawnPoint.position; // Establecer la posición del proyectil
-                bullet.SetActive(true); // Activar el proyectil
+                bullet.transform.position = EnemyBulletSpawnPoint.position; 
+                bullet.SetActive(true);
             }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Verificar si el objeto que colisiona es una bala del jugador
+        
         if (collision.CompareTag("Bullet"))
         {
-            gameObject.SetActive(false); // Desactivar el enemigo al ser impactado
-            collision.gameObject.SetActive(false); // Desactivar el proyectil del jugador
+            gameObject.SetActive(false);
+            collision.gameObject.SetActive(false); 
         }
     }
 }

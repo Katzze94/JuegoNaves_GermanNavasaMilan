@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
-{ public float speed = 5f; // Velocidad del proyectil
+{ public float speed = 5f; 
 
     void Update()
     {
-        // Mover el proyectil hacia abajo
+        
         transform.Translate(Vector2.down * speed * Time.deltaTime);
 
-        // Desactivar el proyectil si sale de la cámara
+        
         if (transform.position.y < -Camera.main.orthographicSize)
         {
             gameObject.SetActive(false);
@@ -21,13 +21,13 @@ public class EnemyBullet : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            // Aquí puedes agregar lógica para dañar al jugador
+           
             PlayerController player = collision.GetComponent<PlayerController>();
             if (player != null)
             {
-                player.Die(); // Llamar al método de muerte del jugador
+                player.Die();
             }
-            gameObject.SetActive(false); // Desactivar el proyectil al impactar
+            gameObject.SetActive(false); 
         }
     }
 }
