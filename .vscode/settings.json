@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Naves_GermanNavasa.sln"
+    "dotnet.defaultSolution": "JuegoNaves_GermanNavasaMilan.sln"
 }
