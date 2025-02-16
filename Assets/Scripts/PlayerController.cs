@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour
     public GameObject bulletPrefab; // Prefab del proyectil
     public Transform bulletSpawnPoint; // Punto de donde se generarán los proyectiles
 
+    private float minX = -7.89f; // Límite mínimo en el eje X
+    private float maxX = 7.89f;  // Límite máximo en el eje X
+
     void Update()
     {
         Move();
@@ -20,6 +23,14 @@ public class PlayerController : MonoBehaviour
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         transform.Translate(Vector2.right * moveHorizontal * moveSpeed * Time.deltaTime);
+         Vector2 newPosition = transform.position + Vector3.right * moveHorizontal * moveSpeed * Time.deltaTime;
+
+
+        
+        // Limitar la posición de la nave dentro de los límites especificados
+        newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX);
+
+        transform.position = newPosition; // Actualizar la posición de la nave
     }
 
    void Shoot()
