@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     private float minX = -7.89f; 
     private float maxX = 7.89f;  
 
+     public AudioSource shootSound;
+
     void Update()
     {
         Move();
@@ -36,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
    void Shoot()
     {
-        
+        shootSound.Play();
         GameObject bullet = PlayerBulletPool.Instance.GetPooledBullet(); 
         if (bullet != null)
         {

@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
         public float fireRate = 1f; 
     private float nextFireTime = 0f; 
 
+    public AudioSource enemyShootSound;
+
     void Update()
     {
         Move();
@@ -26,6 +28,7 @@ public class Enemy : MonoBehaviour
 
     void Shoot()
     {
+      
         if (Time.time >= nextFireTime)
         {
             nextFireTime = Time.time + fireRate; 
@@ -34,6 +37,7 @@ public class Enemy : MonoBehaviour
             {
                 bullet.transform.position = EnemyBulletSpawnPoint.position; 
                 bullet.SetActive(true);
+                 enemyShootSound.Play();
             }
         }
     }
